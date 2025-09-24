@@ -1,124 +1,108 @@
 ﻿using System;
 
-namespace IterationStatements
+namespace ChallengesApp
 {
-    public class Program
+    class Program
     {
-        public static void Main(string[] args)
+        static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to the Iteration Statements Assignment!");
-            Console.WriteLine("------------------------------------------------\n");
+            Console.WriteLine("=== Running all challenge methods ===\n");
 
-            PrintNumbers();
-            PrintEveryThirdNumber();
-            CheckIfNumbersAreEqual();
-            CheckIfNumberIsEven();
-            CheckIfNumberIsPositive();
-            CheckVotingEligibility();
-            CheckIfNumberIsInRange();
-            DisplayMultiplicationTableForUser();
+            // LukeWarm Section
+            PrintNumbersThousandToMinusThousand();
+            PrintNumbersByThree();
+
+            Console.Write("Enter the first integer: ");
+            int firstNumber = int.Parse(Console.ReadLine());
+            Console.Write("Enter the second integer: ");
+            int secondNumber = int.Parse(Console.ReadLine());
+            Console.WriteLine(CheckIfNumbersAreEqual(firstNumber, secondNumber)
+                ? "The numbers are equal."
+                : "The numbers are not equal.");
+
+            Console.Write("Enter a number to check if it is even or odd: ");
+            int numberForEven = int.Parse(Console.ReadLine());
+            Console.WriteLine(CheckIfNumberIsEven(numberForEven)
+                ? $"{numberForEven} is even."
+                : $"{numberForEven} is odd.");
+
+            Console.Write("Enter a number to check if it is positive or negative: ");
+            int numberForPositive = int.Parse(Console.ReadLine());
+            if (numberForPositive == 0)
+                Console.WriteLine("Zero is neither positive nor negative.");
+            else
+                Console.WriteLine(CheckIfNumberIsPositive(numberForPositive)
+                    ? $"{numberForPositive} is positive."
+                    : $"{numberForPositive} is negative.");
+
+            Console.Write("Enter your age to check voting eligibility: ");
+            int age = int.Parse(Console.ReadLine());
+            Console.WriteLine(CheckVotingEligibility(age)
+                ? "You may vote."
+                : "Looks like you're too young this time!");
+
+            // Heating Up Section
+            Console.Write("Enter a number to check if it's in range -10 to 10: ");
+            int numberForRange = int.Parse(Console.ReadLine());
+            Console.WriteLine(CheckIfNumberIsInRange(numberForRange)
+                ? $"{numberForRange} is in the range -10 to 10."
+                : $"{numberForRange} is not in the range -10 to 10.");
+
+            Console.Write("Enter a number to display its multiplication table: ");
+            int numberForTable = int.Parse(Console.ReadLine());
+            DisplayMultiplicationTableForUser(numberForTable);
+
+            Console.WriteLine("\n=== Program complete. ===");
         }
 
-        // 1. Print numbers 1000 through -1000
-        public static void PrintNumbers()
+        // --- LukeWarm Section ---
+        public static void PrintNumbersThousandToMinusThousand()
         {
-            Console.WriteLine("\nNumbers from 1000 to -1000:");
             for (int i = 1000; i >= -1000; i--)
             {
                 Console.WriteLine(i);
             }
         }
 
-        // 2. Print numbers from 3 to 999, counting by 3
-        public static void PrintEveryThirdNumber()
+        public static void PrintNumbersByThree()
         {
-            Console.WriteLine("\nNumbers from 3 to 999 by 3s:");
             for (int i = 3; i <= 999; i += 3)
             {
                 Console.WriteLine(i);
             }
         }
 
-        // 3. Accept two integers and check if equal
-        public static void CheckIfNumbersAreEqual()
+        public static bool CheckIfNumbersAreEqual(int firstNumber, int secondNumber)
         {
-            Console.Write("\nEnter the first number: ");
-            int firstNumber = int.Parse(Console.ReadLine());
-
-            Console.Write("Enter the second number: ");
-            int secondNumber = int.Parse(Console.ReadLine());
-
-            if (firstNumber == secondNumber)
-                Console.WriteLine("The numbers are equal.");
-            else
-                Console.WriteLine("The numbers are not equal.");
+            return firstNumber == secondNumber;
         }
 
-        // 4. Check if a number is even or odd
-        public static void CheckIfNumberIsEven()
+        public static bool CheckIfNumberIsEven(int number)
         {
-            Console.Write("\nEnter a number to check if it is even or odd: ");
-            int number = int.Parse(Console.ReadLine());
-
-            if (number % 2 == 0)
-                Console.WriteLine($"{number} is even.");
-            else
-                Console.WriteLine($"{number} is odd.");
+            return number % 2 == 0;
         }
 
-        // 5. Check if a number is positive or negative
-        public static void CheckIfNumberIsPositive()
+        public static bool CheckIfNumberIsPositive(int number)
         {
-            Console.Write("\nEnter a number to check if it is positive or negative: ");
-            int number = int.Parse(Console.ReadLine());
-
-            if (number > 0)
-                Console.WriteLine($"{number} is positive.");
-            else if (number < 0)
-                Console.WriteLine($"{number} is negative.");
-            else
-                Console.WriteLine("The number is zero.");
+            return number > 0;
         }
 
-        // 6. Read age and determine if user can vote
-        public static void CheckVotingEligibility()
+        public static bool CheckVotingEligibility(int age)
         {
-            Console.Write("\nEnter your age: ");
-            if (int.TryParse(Console.ReadLine(), out int age))
-            {
-                if (age >= 18)
-                    Console.WriteLine("You may vote!");
-                else
-                    Console.WriteLine("Looks like you're too young this time!");
-            }
-            else
-            {
-                Console.WriteLine("Invalid input. Please enter a valid age.");
-            }
+            return age >= 18;
         }
 
-        // 7. Check if number is in the range -10 to 10
-        public static void CheckIfNumberIsInRange()
+        // --- Heating Up Section ---
+        public static bool CheckIfNumberIsInRange(int number)
         {
-            Console.Write("\nEnter a number to check if it is between -10 and 10: ");
-            int number = int.Parse(Console.ReadLine());
-
-            if (number >= -10 && number <= 10)
-                Console.WriteLine($"{number} is within the range -10 to 10.");
-            else
-                Console.WriteLine($"{number} is outside the range -10 to 10.");
+            return number >= -10 && number <= 10;
         }
 
-        // 8. Display multiplication table for a given number
-        public static void DisplayMultiplicationTableForUser()
+        public static void DisplayMultiplicationTableForUser(int number)
         {
-            Console.Write("\nEnter a number to display its multiplication table: ");
-            int number = int.Parse(Console.ReadLine());
-
-            Console.WriteLine($"\nMultiplication Table for {number}:");
             for (int i = 1; i <= 12; i++)
             {
-                Console.WriteLine($"{i} * {number} = {i * number}");
+                Console.WriteLine($"{number} x {i} = {number * i}");
             }
         }
     }
